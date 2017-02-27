@@ -26,4 +26,16 @@ public class Model {
         units.add( new Combatant(name, Initiative) );
     }
     
+    public void removeUnit(String name){
+        // Presumably, this is the "ListIterator Approach".
+        ListIterator<Combatant> iter = units.listIterator();
+        while( iter.hasNext() ){
+            if ( iter.getClass().getName() == name  ){
+                iter.remove();
+                break;
+            }
+            iter.next();
+        }
+    }
+    
 }
