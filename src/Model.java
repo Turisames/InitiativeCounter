@@ -8,10 +8,22 @@
  *
  * @author Turisames
  */
+
+import java.util.*;
+
+
 public class Model {
     
-    
-   
+    List<Combatant> units = new LinkedList<Combatant>();
+
     public Model() {
-    } 
+    }
+    
+    // Adds a unit to the list
+    public void addToList(String name, int Initiative){
+        
+        // Java really does take a lot of influences from C/C++.
+        units.add( new Combatant(name, Initiative) );
+    }
+    
 }
