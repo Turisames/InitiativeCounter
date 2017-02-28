@@ -22,14 +22,16 @@ public class Model {
     // Adds a unit to the list
     public void addToList(String name, int Initiative){
         
-        
-        // Java really does take a lot of influences from C/C++.
-        units.add( new Combatant(name, Initiative) );
-        
-        // TODO: Add in order, so that there's no need to sort.
-        for ( int i = 0; i < units.size(); i++ ){
-            if ( units.get(i).getInitiative() > Initiative ){
-                units.add(i, new Combatant(name, Initiative));
+        if (units.isEmpty()){
+            // Java really does take a lot of influences from C/C++.
+            units.add( new Combatant(name, Initiative) );
+        }
+        else{
+            // TODO: Add in order, so that there's no need to sort.
+            for ( int i = 0; i < units.size(); i++ ){
+                if ( units.get(i).getInitiative() > Initiative ){
+                    units.add(i, new Combatant(name, Initiative));
+                }
             }
         }
     }
