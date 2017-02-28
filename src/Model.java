@@ -14,6 +14,7 @@ import java.util.*;
 
 public class Model {
     
+    // TODO: Maybe change this into an ArrayList instead?
     List<Combatant> units = new LinkedList<Combatant>();
 
     public Model() {
@@ -27,7 +28,6 @@ public class Model {
             units.add( new Combatant(name, Initiative) );
         }
         else{
-            // TODO: Add in order, so that there's no need to sort.
             for ( int i = 0; i < units.size(); i++ ){
                 if ( units.get(i).getInitiative() > Initiative ){
                     units.add(i, new Combatant(name, Initiative));
@@ -41,6 +41,7 @@ public class Model {
         // Presumably, this is the "ListIterator Approach".
         ListIterator<Combatant> iter = units.listIterator();
         
+        // TODO: Check whether this works as intended.
         while( iter.hasNext() ){
             if ( iter.getClass().getName() == name  ){
                 iter.remove();
