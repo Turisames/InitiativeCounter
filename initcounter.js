@@ -30,7 +30,9 @@ function addToList( Com = new combatant ) {
   var list = document.getElementById('list');
   var entry = document.createElement("li");
 
-  entry.appendChild(document.createTextNode( Com.name + "\t" + Com.init ));
+  let word = Com.name + "\t\t\t\t" + Com.init ;
+
+  entry.appendChild(document.createTextNode( word ) );
   list.appendChild( entry );
   clearEntries();
 }
