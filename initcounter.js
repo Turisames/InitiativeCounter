@@ -1,11 +1,15 @@
 var combatants = [];
 
 class combatant {
+
   constructor( Name, Init ) {
     this.name = Name;
     this.init = Init;
-  };
+  }
 
+  gibName(){
+    return this.name;
+  }
 
   get getName() {
     return this.name;
@@ -25,16 +29,28 @@ class combatant {
 function addToList( Com = new combatant ) {
   var list = document.getElementById('list');
   var entry = document.createElement("li");
-  entry.appendChild(document.createTextNode( Com.getName() + " " + Com.getInit() ) );
-  list.appendChild( li );
+
+  entry.appendChild(document.createTextNode( Com.name + "\t" + Com.init ));
+  list.appendChild( entry );
+  clearEntries();
+}
+
+function clearEntries() {
+  var nameEntry = document.getElementById("NameEntry")
+  var initEntry = document.getElementById("InitEntry");
+  nameEntry.value = "";
+  initEntry.value = "";
 }
 
 function takeInfo() {
-  var nameEntry = document.getElementsByName('NameEntry');
-  var initEntry = document.getElementsByName('InitEntry');
+  var nameEntry = document.getElementById("NameEntry")
+  var initEntry = document.getElementById("InitEntry");
 
-  var com = new combatant( nameEntry.value, initEntry.value );
-  addToList( com );
+  if (nameEntry.value != "" && initEntry.value != ""){
+
+    if ( Number( Number.isInteger( parseInt( initEntry.value ) )  ) ) {
+      var com = new combatant( nameEntry.value, initEntry.value );
+      addToList( com );
+    }
+  }
 }
-
-console.log();
