@@ -26,15 +26,34 @@ class combatant {
   }
 };
 
+function compare(a, b) {
+  if (a.init < b.init)
+    return 1;
+  if (a.init > b.init)
+    return -1;
+  return 0;
+}
+
 function addToList( Com = new combatant ) {
   var list = document.getElementById('list');
-  var entry = document.createElement("li");
 
-  let word = Com.name + "\t\t\t\t" + Com.init ;
+// Empty the list
+  while( list.firstChild ){
+    list.removeChild( list.firstChild );
+  }
 
-  entry.appendChild(document.createTextNode( word ) );
-  list.appendChild( entry );
+  combatants.push( Com );
+  combatants.sort( compare );
+
+  for (var i = 0; i < combatants.length; ++i){
+    let tmp = combatants[i];
+    let word = tmp.name + "\t\t\t\t" + tmp.init ;
+    let entry = document.createElement("li");
+    entry.appendChild( document.createTextNode( word ) );
+    list.appendChild( entry );
+  }
   clearEntries();
+
 }
 
 function clearEntries() {
@@ -49,7 +68,6 @@ function takeInfo() {
   var initEntry = document.getElementById("InitEntry");
 
   if (nameEntry.value != "" && initEntry.value != ""){
-
     if ( Number( Number.isInteger( parseInt( initEntry.value ) )  ) ) {
       var com = new combatant( nameEntry.value, initEntry.value );
       addToList( com );
